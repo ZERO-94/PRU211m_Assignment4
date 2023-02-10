@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public bool isDead = false;
+    public bool isWin = false;
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -69,6 +70,10 @@ public class PlayerMovement : MonoBehaviour
         if(col.gameObject.tag == "Enemy")
         {
             isDead = true;
+        }
+        if(col.gameObject.tag == "Goal")
+        {
+            isWin = true;
         }
     }
 
