@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5400062506829248289}
   - component: {fileID: 492551164578086431}
   - component: {fileID: 76318620713661273}
+  - component: {fileID: -4929609976798783385}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Enemy
@@ -110,6 +111,35 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 0, y: 0.5785222}
+      - {x: -0.4999981, y: -0.28866714}
+      - {x: -0.4999981, y: -0.2886672}
+      - {x: 0.50002, y: -0.28865045}
+--- !u!60 &-4929609976798783385
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582449632060452543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.00009441376, y: 0.5585909}
+      - {x: -0.4814911, y: -0.28005213}
+      - {x: 0.48545074, y: -0.28057045}
