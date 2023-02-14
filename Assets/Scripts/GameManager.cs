@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,10 +9,6 @@ public class GameManager : MonoBehaviour
     private Canvas canvas;
     [SerializeField]
     private GameObject player;
-    [SerializeField]
-    private TextMeshProUGUI gameStatus;
-    [SerializeField]
-    private TextMeshProUGUI goal;
     public float cameraSpeed = 0.05f;
     void Start()
     {
@@ -30,15 +24,6 @@ public class GameManager : MonoBehaviour
             canvas.enabled = true;
             CameraMovement camMovement = (CameraMovement)Camera.main.GetComponent(typeof(CameraMovement));
             camMovement.IsMoving = false;
-            gameStatus.text = "Lose";
-        }
-
-        if (((PlayerMovement)player.GetComponent(typeof(PlayerMovement))).isWin)
-        {   
-            canvas.enabled = true;
-            CameraMovement camMovement = (CameraMovement)Camera.main.GetComponent(typeof(CameraMovement));
-            camMovement.IsMoving = false;
-            gameStatus.text = "Win";
         }
     }
 }
