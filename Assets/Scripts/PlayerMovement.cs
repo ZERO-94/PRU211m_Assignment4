@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     public bool isDead = false;
-
+    public bool isWin = false;
+    public bool isHardMode = false;
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
@@ -29,12 +30,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsCollidedDeadZone()) isDead = true;
+        if (IsCollidedDeadZone()) 
+            isDead = true    ;
+        
 
         if (isDead)
         {
-            //ignore
-            return;
+            SceneManager.LoadScene("GameOverScene");
+            return ;
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -69,12 +72,18 @@ public class PlayerMovement : MonoBehaviour
         if(col.gameObject.tag == "Enemy")
         {
             isDead = true;
+
+        }
+        if (col.gameObject.tag == "Goal")
+        {
+            isWin = true;
         }
     }
 
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groudCheck.position, 0.2f, groudLayer);
+
     }
 
     private bool IsCollidedDeadZone()
