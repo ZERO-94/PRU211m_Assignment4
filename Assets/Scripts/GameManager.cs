@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
             CameraMovement camMovement = (CameraMovement)Camera.main.GetComponent(typeof(CameraMovement));
             camMovement.IsMoving = false;
             gameStatus.text = "Lose";
+            
         }
 
         if (((PlayerMovement)player.GetComponent(typeof(PlayerMovement))).isWin)
@@ -40,5 +41,6 @@ public class GameManager : MonoBehaviour
             camMovement.IsMoving = false;
             gameStatus.text = "Win";
         }
+        if (((PlayerMovement)player.GetComponent(typeof(PlayerMovement))).isHardMode) return;
     }
 }
