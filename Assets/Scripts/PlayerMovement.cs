@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using Unity.VisualScripting;
 using UnityEngine;
+using Timer = System.Timers.Timer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 8f;
     public float jumpingPower = 16f;
     private bool isFacingRight = true;
+    public int jumpCount = 0;
 
 
     public bool isDead = false;
     public bool isWin = false;
+    public bool isDouleJump = false;
+    public bool isInvicible = false;
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -40,14 +45,28 @@ public class PlayerMovement : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (IsGrounded()) jumpCount = 0;
+
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            if (IsGrounded()) rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            if (jumpCount < 2) jumpCount++;
         }
+
 
         if(Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (isDouleJump)
+            {
+                if (jumpCount == 1)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpingPower * 0.5f);
+                }
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
 
         Flip();
@@ -65,16 +84,43 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
+    IEnumerator ExecuteFunctionAfterDelay(float delay, Action functionToExecute)
+    {
+        yield return new WaitForSeconds(delay);
+        functionToExecute?.Invoke();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag == "Enemy")
         {
-            isDead = true;
+            if (isInvicible)
+            {
+                Destroy(col.gameObject);
+            } else
+            {
+                isDead = true;
+            }
         }
         if(col.gameObject.tag == "Goal")
         {
             isWin = true;
         }
+        if (col.gameObject.tag == "DJFruit")
+        {
+            isDouleJump = true;
+            Destroy(col.gameObject);
+            void disableDoubleJump() => isDouleJump = false;
+            StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableDoubleJump));
+        }
+        if (col.gameObject.tag == "InvicibleFruit")
+        {
+            isInvicible = true;
+            Destroy(col.gameObject);
+            void disableInvicible() => isInvicible = false;
+            StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableInvicible));
+        }
+        
     }
 
     private bool IsGrounded()
