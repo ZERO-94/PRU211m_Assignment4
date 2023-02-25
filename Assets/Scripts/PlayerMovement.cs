@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpingPower = 16f;
     private bool isFacingRight = true;
     public int jumpCount = 0;
+    private Coroutine unDoubleJump;
+    private Coroutine unInvicibile;
+
 
 
     public bool isDead = false;
@@ -26,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
     private Transform groudCheck;
     [SerializeField]
     private LayerMask groudLayer;
+    [SerializeField]
+    private GameObject haloAngel;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        haloAngel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -111,14 +117,26 @@ public class PlayerMovement : MonoBehaviour
             isDouleJump = true;
             Destroy(col.gameObject);
             void disableDoubleJump() => isDouleJump = false;
-            StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableDoubleJump));
+            if (unDoubleJump != null)
+            {
+                StopCoroutine(unDoubleJump);
+            }
+            unDoubleJump = StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableDoubleJump));
         }
         if (col.gameObject.tag == "InvicibleFruit")
         {
             isInvicible = true;
             Destroy(col.gameObject);
-            void disableInvicible() => isInvicible = false;
-            StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableInvicible));
+            haloAngel.SetActive(true);
+            void disableInvicible() {
+                isInvicible = false;
+                haloAngel.SetActive(false);
+            }
+            if (unInvicibile != null)
+            {
+                StopCoroutine(unInvicibile);
+            }
+            unInvicibile = StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableInvicible));
         }
         
     }
