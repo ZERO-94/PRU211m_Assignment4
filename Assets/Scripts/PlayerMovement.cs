@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Timers;
 using Unity.VisualScripting;
 using UnityEngine;
-using Timer = System.Timers.Timer;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
@@ -23,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDouleJump = false;
     public bool isInvicible = false;
 
+    public bool isHardMode = false;
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
@@ -41,12 +41,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsCollidedDeadZone()) isDead = true;
+        if (IsCollidedDeadZone()) 
+            isDead = true    ;
+        
 
         if (isDead)
         {
-            //ignore
-            return;
+            SceneManager.LoadScene("GameOverScene");
+            return ;
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -108,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
                 isDead = true;
             }
         }
-        if(col.gameObject.tag == "Goal")
+        if (col.gameObject.tag == "Goal")
         {
             isWin = true;
         }
@@ -144,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groudCheck.position, 0.2f, groudLayer);
+
     }
 
     private bool IsCollidedDeadZone()
