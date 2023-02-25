@@ -15,7 +15,7 @@ public class TryAgainMainMenu : MonoBehaviour
     {
         
     }
-public void RetryGame()     
+    public void RetryGame()     
     {
         SceneManager.LoadScene("GameScene");
     }

@@ -30,11 +30,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(isWin)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            return;
+        }
+
         if (IsCollidedDeadZone()) 
-            isDead = true    ;
+            isDead = true;
         
 
-        if (isDead)
+        if (!isWin && isDead)
         {
             SceneManager.LoadScene("GameOverScene");
             return ;
@@ -58,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (IsCollidedDeadZone()) isDead = true;
-        if (isDead)
+        if (isWin || isDead)
         {
             //ignore
             return;
