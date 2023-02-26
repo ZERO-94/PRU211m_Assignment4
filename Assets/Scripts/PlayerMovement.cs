@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Timers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount = 0;
     private Coroutine unDoubleJump;
     private Coroutine unInvicibile;
+    private int toggleNumber = 4;
 
 
 
@@ -98,14 +100,17 @@ public class PlayerMovement : MonoBehaviour
         functionToExecute?.Invoke();
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")
         {
             if (isInvicible)
             {
                 Destroy(col.gameObject);
-            } else
+            }
+            else
             {
                 isDead = true;
             }
@@ -130,7 +135,14 @@ public class PlayerMovement : MonoBehaviour
             isInvicible = true;
             Destroy(col.gameObject);
             haloAngel.SetActive(true);
-            void disableInvicible() {
+            async void disableInvicible()
+            {
+                for (int i = 0; i < toggleNumber; i++)
+                {
+                    await Task.Delay(2000 / toggleNumber);
+                    haloAngel.SetActive(!haloAngel.activeSelf);
+                }
+
                 isInvicible = false;
                 haloAngel.SetActive(false);
             }
@@ -138,9 +150,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 StopCoroutine(unInvicibile);
             }
-            unInvicibile = StartCoroutine(ExecuteFunctionAfterDelay(5.0f, disableInvicible));
+            unInvicibile = StartCoroutine(ExecuteFunctionAfterDelay(3.0f, disableInvicible));
         }
-        
     }
 
     private bool IsGrounded()
