@@ -32,13 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsCollidedDeadZone()) 
             isDead = true    ;
-        
-
-        if (isDead)
-        {
-            SceneManager.LoadScene("GameOverScene");
-            return ;
-        }
+ 
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
