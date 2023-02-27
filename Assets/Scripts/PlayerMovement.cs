@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount = 0;
     private Coroutine unDoubleJump;
     private Coroutine unInvicibile;
-    private int toggleNumber = 4;
+    private int toggleNumber = 10;
 
 
 
