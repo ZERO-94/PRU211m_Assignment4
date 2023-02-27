@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6447722072507503168, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
-  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   isWin: 0
   isDouleJump: 1
   isInvicible: 0
+  isHardMode: 0
   rb: {fileID: 2380479792251552042}
   groudCheck: {fileID: 2380479792525636143}
   groudLayer:
