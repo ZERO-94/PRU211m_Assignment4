@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Goal
+  - Ground
+  - Enemy
+  - Fruit
+  - DJFruit
+  - InvicibleFood
+  - InvicibleFruit
   layers:
   - Default
   - TransparentFX
