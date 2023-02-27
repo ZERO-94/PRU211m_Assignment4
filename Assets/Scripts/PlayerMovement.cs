@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isDead = true;
             }
+
         }
         if (col.gameObject.tag == "Goal")
         {
