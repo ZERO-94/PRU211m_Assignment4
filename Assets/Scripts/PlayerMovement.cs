@@ -43,15 +43,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsCollidedDeadZone()) 
-            isDead = true    ;
-        
 
-        if (isDead)
-        {
-            SceneManager.LoadScene("GameOverScene");
-            return ;
-        }
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -114,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isDead = true;
             }
+
         }
         if (col.gameObject.tag == "Goal")
         {
