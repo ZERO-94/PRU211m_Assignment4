@@ -18,7 +18,6 @@ public class PlayGame : MonoBehaviour
     }
     public void PlayTheGame()
     {
-        GameManager.currentLevel = 1;
-        SceneManager.LoadScene("GameScene");
+        LevelManager.LoadNewGame();
     }
 }

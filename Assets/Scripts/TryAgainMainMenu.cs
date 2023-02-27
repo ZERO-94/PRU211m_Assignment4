@@ -15,28 +15,24 @@ public class TryAgainMainMenu : MonoBehaviour
     {
         
     }
-    
-    public void RetryGame()     
+
+    public void RetryLevel()
     {
-        SceneManager.LoadScene(GameManager.levelList.GetValueOrDefault(GameManager.currentLevel));
+        LevelManager.RetryLevel();
     }
-    
-    public void StartGame()
+
+    public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        LevelManager.LoadMainMenu();
     }
 
     public void NextLevel()
     {
-        int nextLevel = GameManager.currentLevel + 1;
-        string loadScene = (GameManager.currentLevel >= GameManager.levelList.Count) ? "MainMenu" : GameManager.levelList.GetValueOrDefault(nextLevel);
-        GameManager.currentLevel = nextLevel;
-        SceneManager.LoadScene(loadScene);
+        LevelManager.LoadNextLevel();
     }
 
     public void StartHardModeGame()
     {
-        //i dont know this could be a scene for hard mode i guess
-        SceneManager.LoadScene("GameHardModeScene");
+  
     }
 }
