@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173506bbf89e04da666c6f00911b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpingPower: 20
+  jumpingPower: 10
   jumpCount: 0
   isDead: 0
   isWin: 0

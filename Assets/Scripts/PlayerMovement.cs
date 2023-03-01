@@ -71,18 +71,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if(Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
+        if(Input.GetButtonDown("Jump"))
         {
             if (isDouleJump)
             {
                 if (jumpCount == 1)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpingPower * 0.5f);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 }
-            }
-            else
-            {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
         }
 
