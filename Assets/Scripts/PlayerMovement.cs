@@ -44,6 +44,21 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        if(isWin)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            return;
+        }
+
+        if (IsCollidedDeadZone()) 
+            isDead = true;
+        
+
+        if (!isWin && isDead)
+        {
+            SceneManager.LoadScene("GameOverScene");
+            return ;
+        }
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -56,18 +71,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if(Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
+        if(Input.GetButtonDown("Jump"))
         {
             if (isDouleJump)
             {
                 if (jumpCount == 1)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpingPower * 0.5f);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 }
-            }
-            else
-            {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
         }
 
@@ -77,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (IsCollidedDeadZone()) isDead = true;
-        if (isDead)
+        if (isWin || isDead)
         {
             //ignore
             return;
