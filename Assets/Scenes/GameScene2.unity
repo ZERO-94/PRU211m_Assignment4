@@ -7365,6 +7365,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2380479792251552040, guid: 3733e27fa1d2f9943940a6860b234f87, type: 3}
+      propertyPath: isDouleJump
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2380479792251552043, guid: 3733e27fa1d2f9943940a6860b234f87, type: 3}
       propertyPath: m_Sprite
       value: 

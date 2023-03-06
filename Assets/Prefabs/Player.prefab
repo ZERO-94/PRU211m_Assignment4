@@ -152,7 +152,7 @@ MonoBehaviour:
   jumpCount: 0
   isDead: 0
   isWin: 0
-  isDouleJump: 1
+  isDouleJump: 0
   isInvicible: 0
   isHardMode: 0
   rb: {fileID: 2380479792251552042}
