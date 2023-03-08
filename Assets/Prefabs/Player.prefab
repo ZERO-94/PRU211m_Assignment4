@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2380479792251552042}
   - component: {fileID: 2380479792251552041}
   - component: {fileID: 2380479792251552040}
+  - component: {fileID: -3172871553462293101}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -155,12 +156,33 @@ MonoBehaviour:
   isDouleJump: 0
   isInvicible: 0
   isHardMode: 0
+  animator: {fileID: -3172871553462293101}
   rb: {fileID: 2380479792251552042}
   groudCheck: {fileID: 2380479792525636143}
   groudLayer:
     serializedVersion: 2
     m_Bits: 64
   haloAngel: {fileID: 7234386888283606085}
+--- !u!95 &-3172871553462293101
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380479792251552047}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89b3024260fa1a646b6d5867ed8bc3b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2380479792525636142
 GameObject:
   m_ObjectHideFlags: 0

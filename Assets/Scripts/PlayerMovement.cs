@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isInvicible = false;
 
     public bool isHardMode = false;
+
+    public Animator animator;
+
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
@@ -37,14 +40,14 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator.enabled = true;
         haloAngel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(isWin)
+        if (isWin)
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             return;
@@ -61,12 +64,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("Speed", MathF.Abs(horizontal * speed));
 
-        if (IsGrounded()) jumpCount = 0;
+        if (IsGrounded())
+        {
+            animator.SetBool("IsJumping", false);
+            jumpCount = 0;
+        }
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (IsGrounded()) rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            if (IsGrounded())
+            {
+                animator.SetBool("IsJumping", true);
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
             if (jumpCount < 2) jumpCount++;
         }
 
@@ -77,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (jumpCount == 1)
                 {
+                    animator.SetBool("IsJumping", true);
                     rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 }
             }
@@ -87,12 +100,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (IsCollidedDeadZone()) isDead = true;
         if (isWin || isDead)
         {
             //ignore
             return;
         }
+        animator.SetFloat("Speed", MathF.Abs(horizontal * speed));
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
