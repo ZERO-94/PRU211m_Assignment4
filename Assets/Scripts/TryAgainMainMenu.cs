@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TryAgainMainMenu : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -15,18 +15,24 @@ public class TryAgainMainMenu : MonoBehaviour
     {
         
     }
-public void RetryGame()     
+
+    public void RetryLevel()
     {
-        SceneManager.LoadScene("GameScene");
+        LevelManager.RetryLevel();
     }
-    public void StartGame()
+
+    public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        LevelManager.LoadMainMenu();
     }
+
+    public void NextLevel()
+    {
+        LevelManager.LoadNextLevel();
+    }
+
     public void StartHardModeGame()
     {
-        //i dont know this could be a scene for hard mode i guess
-        SceneManager.LoadScene("GameHardModeScene");
-        
+  
     }
 }

@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     
     public float speed = 0.05f;
+    public float increaseAmount = 0.0000001f;
     // Start is called before the first frame update
 
     public bool IsMoving { get; set; } = true;
@@ -21,6 +22,7 @@ public class CameraMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        speed += increaseAmount;
         if (IsMoving)
         {
             MoveUp();
