@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     public float speed = 5f;
     public bool canMove = true;
 
+    public Animator animator;
+
     [SerializeField]
     private Rigidbody2D rb;
 
@@ -19,16 +21,20 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator.enabled = true;   
     }
 
     // Update is called once per frame
     void Update()
     {
         //freeze if canMove = false
-        if (!canMove) { 
+        if (!canMove) {
+            animator.SetBool("CanMove", false);
             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
             return;
+        } else
+        {
+            animator.SetBool("CanMove", true);
         }
 
         rb.constraints = RigidbodyConstraints2D.None;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -785852553682080638}
   - component: {fileID: -6789019203532612025}
   - component: {fileID: 1789926635829626418}
+  - component: {fileID: -5459481147648307760}
   m_Layer: 0
   m_Name: Ememy2
   m_TagString: Enemy
@@ -149,3 +150,23 @@ MonoBehaviour:
   speed: 5
   maxMoveDistance: 5
   rb: {fileID: -6789019203532612025}
+--- !u!95 &-5459481147648307760
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887865962080504764}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2dbad9077f8fbdc40936500c408a3f12, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
