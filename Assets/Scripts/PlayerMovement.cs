@@ -79,9 +79,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsGrounded())
             {
+                jumpCount = 0;
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             }
-            if (jumpCount < 2) jumpCount++;
+            jumpCount++;
         }
 
 
@@ -89,11 +90,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isDouleJump)
             {
-                if (jumpCount == 1)
+                if (jumpCount < 2)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 }
             }
+            jumpCount++;
         }
 
         Flip();
